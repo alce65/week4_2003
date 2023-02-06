@@ -1,6 +1,8 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import logo from "./logo.svg";
+import "./App.css";
+import { Counter } from "../counter/counter";
+import { CounterComplex } from "../counter/counter.complex";
 
 function App() {
   return (
@@ -19,6 +21,8 @@ function App() {
           Learn React
         </a>
       </header>
+      <Counter></Counter>
+      <CounterComplex></CounterComplex>
     </div>
   );
 }
