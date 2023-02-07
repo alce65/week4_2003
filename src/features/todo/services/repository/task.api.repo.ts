@@ -25,7 +25,7 @@ export class TaskApiRepo {
 
   async getTask(id: TaskStructure["id"]): Promise<TaskStructure> {
     const url = this.url + "/" + id;
-    const resp = await fetch(this.url);
+    const resp = await fetch(url);
     const data = (await resp.json()) as TaskStructure;
     return data;
   }
@@ -60,5 +60,6 @@ export class TaskApiRepo {
     const resp = await fetch(url, {
       method: "DELETE",
     });
+    if (!resp.ok) throw new Error("Delete not possible");
   }
 }
