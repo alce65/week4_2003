@@ -63,6 +63,7 @@ export function Tasks() {
       <ul>
         {tasks.map((item) => (
           <Card
+            key={item.id}
             task={item}
             deleteTask={deleteTask}
             updateTask={updateTask}
