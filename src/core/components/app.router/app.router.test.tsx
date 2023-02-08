@@ -19,7 +19,7 @@ const mockOptions: MenuOption[] = [
 ];
 
 describe("Given AppRouter", () => {
-  describe("When the route is ...", () => {
+  describe("When the route is home", () => {
     render(
       <Router initialEntries={["/home", "/otra"]} initialIndex={0}>
         <AppRouter menuOptions={mockOptions}></AppRouter>
