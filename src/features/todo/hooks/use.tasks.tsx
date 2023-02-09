@@ -2,6 +2,7 @@ import { useState, useCallback, useMemo } from "react";
 import { ProtoTaskStructure, TaskStructure } from "../models/task";
 import { TaskApiRepo } from "../services/repository/task.api.repo";
 
+export type UseTasksStructure = ReturnType<typeof useTasks>;
 export function useTasks() {
   const repo = useMemo(() => new TaskApiRepo(), []);
   const initialState: TaskStructure[] = [];
