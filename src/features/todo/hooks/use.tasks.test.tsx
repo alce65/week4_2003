@@ -1,11 +1,13 @@
 import { TaskApiRepo } from "../services/repository/task.api.repo";
 import { useTasks } from "./use.tasks";
 
-TaskApiRepo.prototype.getTask = jest.fn();
-TaskApiRepo.prototype.delete = jest.fn();
+const mockRepo = {
+  getTask: jest.fn(),
+  delete: jest.fn(),
+} as unknown as TaskApiRepo;
 
 const TestComponent = function () {
-  const { tasks, load, addTask, deleteTask, updateTask } = useTasks();
+  const { tasks, load, addTask, deleteTask, updateTask } = useTasks(mockRepo);
 
   return (
     <>
