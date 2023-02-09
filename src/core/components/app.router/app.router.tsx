@@ -1,6 +1,7 @@
 import { Navigate, Route, Routes } from "react-router-dom";
 import { MenuOption } from "../app/App";
 import { Suspense, lazy } from "react";
+import { NotesContextProvider } from "../../../features/notes/context/notes.context.provider";
 const Home = lazy(() => import("../../../features/home/page/home"));
 const Todo = lazy(() => import("../../../features/todo/page/todo"));
 const Notes = lazy(() => import("../../../features/notes/page/notes"));
@@ -10,13 +11,21 @@ type AppRouterProps = {
   menuOptions: MenuOption[];
 };
 export function AppRouter({ menuOptions }: AppRouterProps) {
+  console.log("Create AppRouter");
   return (
     <Suspense>
       <Routes>
         <Route path={"/"} element={<Home></Home>}></Route>
         <Route path={menuOptions[0].path} element={<Home></Home>}></Route>
         <Route path={menuOptions[1].path} element={<Todo></Todo>}></Route>
-        <Route path={menuOptions[2].path} element={<Notes></Notes>}></Route>
+        <Route
+          path={menuOptions[2].path}
+          element={
+            <NotesContextProvider>
+              <Notes></Notes>
+            </NotesContextProvider>
+          }
+        ></Route>
         <Route path={menuOptions[3].path} element={<About></About>}></Route>
         <Route
           path={"*"}
