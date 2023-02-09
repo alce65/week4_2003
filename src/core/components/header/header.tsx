@@ -1,8 +1,11 @@
+import { useContext } from "react";
 import logo from "./logo.svg";
+import { AppContext } from "../../context/app.context";
 
 type HeaderProps = { children: JSX.Element };
 
 export function Header({ children }: HeaderProps) {
+  const { tasks } = useContext(AppContext);
   return (
     <header className="App-header">
       <img src={logo} className="App-logo" alt="logo" />
@@ -15,7 +18,7 @@ export function Header({ children }: HeaderProps) {
         target="_blank"
         rel="noopener noreferrer"
       >
-        Learn React
+        Learn React (Tareas: {tasks.length})
       </a>
       {children}
     </header>
