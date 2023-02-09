@@ -1,4 +1,4 @@
-import { useState, useCallback } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { ProtoTaskStructure, TaskStructure } from "../models/task";
 import { TaskApiRepo } from "../services/repository/task.api.repo";
 
@@ -49,6 +49,10 @@ export function useTasks(repo: TaskApiRepo) {
       handlerError(error as Error);
     }
   };
+
+  useEffect(() => {
+    loadTasks();
+  }, [loadTasks]);
 
   return {
     tasks,

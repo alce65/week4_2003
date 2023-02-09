@@ -1,15 +1,11 @@
-import { useContext, useEffect } from "react";
+import { useContext } from "react";
 import { Add } from "../add/add";
 import { Card } from "../card/card";
 import "./tasks.scss";
 import { AppContext } from "../../../../core/context/app.context";
 
 export function Tasks() {
-  const { tasks, loadTasks } = useContext(AppContext);
-
-  useEffect(() => {
-    loadTasks();
-  }, [loadTasks]);
+  const { tasks } = useContext(AppContext);
 
   return (
     <section className="tasks">
