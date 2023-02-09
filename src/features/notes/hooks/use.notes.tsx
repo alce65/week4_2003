@@ -1,6 +1,7 @@
 import { useState, useCallback } from "react";
 import { ProtoNoteStructure, NoteStructure } from "../models/note";
 import { NoteApiRepo } from "../services/repository/note.api.repo";
+import { MOCK_NoteS } from "../mocks/notes";
 
 export type UseNotesStructure = ReturnType<typeof useNotes>;
 export function useNotes(repo: NoteApiRepo) {
