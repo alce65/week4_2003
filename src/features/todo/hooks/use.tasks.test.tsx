@@ -7,11 +7,12 @@ const mockRepo = {
 } as unknown as TaskApiRepo;
 
 const TestComponent = function () {
-  const { tasks, load, addTask, deleteTask, updateTask } = useTasks(mockRepo);
+  const { tasks, loadTasks, addTask, deleteTask, updateTask } =
+    useTasks(mockRepo);
 
   return (
     <>
-      <button onClick={() => load()}></button>
+      <button onClick={() => loadTasks()}></button>
     </>
   );
 };

@@ -3,8 +3,8 @@ import { TaskApiRepo } from "../../features/todo/services/repository/task.api.re
 import { AppContext } from "./app.context";
 
 export function AppContextProvider({ children }: { children: JSX.Element }) {
-  const repo = new TaskApiRepo();
-  const context = useTasks(repo);
+  const taskRepo = new TaskApiRepo();
+  const context = useTasks(taskRepo);
 
   return <AppContext.Provider value={context}>{children}</AppContext.Provider>;
 }

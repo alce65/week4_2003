@@ -14,7 +14,7 @@ export function useTasks(repo: TaskApiRepo) {
     console.log(error.message);
   };
 
-  const load = useCallback(async () => {
+  const loadTasks = useCallback(async () => {
     try {
       const tasks = await repo.loadTasks();
       setTasks(tasks);
@@ -52,7 +52,7 @@ export function useTasks(repo: TaskApiRepo) {
 
   return {
     tasks,
-    load,
+    loadTasks,
     addTask,
     deleteTask,
     updateTask,

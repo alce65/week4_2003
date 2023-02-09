@@ -1,11 +1,7 @@
 import { SyntheticEvent, useContext } from "react";
 import { ProtoTask } from "../../models/task";
-
 import { AppContext } from "../../../../core/context/app.context";
 
-// type AddProps = {
-//   addTask: (task: ProtoTaskStructure) => void;
-// };
 export function Add() {
   const { addTask } = useContext(AppContext);
 

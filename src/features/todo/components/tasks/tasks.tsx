@@ -5,11 +5,11 @@ import "./tasks.scss";
 import { AppContext } from "../../../../core/context/app.context";
 
 export function Tasks() {
-  const { tasks, load } = useContext(AppContext);
+  const { tasks, loadTasks } = useContext(AppContext);
 
   useEffect(() => {
-    load();
-  }, [load]);
+    loadTasks();
+  }, [loadTasks]);
 
   return (
     <section className="tasks">
