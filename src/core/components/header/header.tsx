@@ -1,4 +1,4 @@
-import { useContext, useEffect } from "react";
+import { useContext } from "react";
 import logo from "./logo.svg";
 import { AppContext } from "../../context/app.context";
 

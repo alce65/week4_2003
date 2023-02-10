@@ -1,12 +1,16 @@
-import { useState, useCallback } from "react";
+import { useCallback, useReducer } from "react";
 import { ProtoNoteStructure, NoteStructure } from "../models/note";
 import { NoteApiRepo } from "../services/repository/note.api.repo";
-import { MOCK_NoteS } from "../mocks/notes";
+import * as ac from "../reducer/notes.action.creators";
+
+import { notesReducer } from "../reducer/notes.reducer";
 
 export type UseNotesStructure = ReturnType<typeof useNotes>;
 export function useNotes(repo: NoteApiRepo) {
   const initialState: NoteStructure[] = [];
-  const [notes, setNotes] = useState(initialState);
+  // Previous NO FLUX const [notes, setNotes] = useState(initialState);
+
+  const [notes, dispatch] = useReducer(notesReducer, initialState);
 
   console.log("NOTES: ", notes);
 
@@ -17,7 +21,8 @@ export function useNotes(repo: NoteApiRepo) {
   const loadNotes = useCallback(async () => {
     try {
       const notes = await repo.loadNotes();
-      setNotes(notes);
+      // Previous NO FLUX setNotes(notes);
+      dispatch(ac.loadNotesCreator(notes));
     } catch (error) {
       handlerError(error as Error);
     }
@@ -26,7 +31,8 @@ export function useNotes(repo: NoteApiRepo) {
   const addNote = async (note: ProtoNoteStructure) => {
     try {
       const finalNote = await repo.createNote(note);
-      setNotes([...notes, finalNote]);
+      // Previous NO FLUX setNotes([...notes, finalNote]);
+      dispatch(ac.addNotesCreator(finalNote));
     } catch (error) {
       handlerError(error as Error);
     }
@@ -35,7 +41,8 @@ export function useNotes(repo: NoteApiRepo) {
   const deleteNote = async (id: NoteStructure["id"]) => {
     try {
       await repo.delete(id);
-      setNotes(notes.filter((item) => item.id !== id));
+      // Previous NO FLUX setNotes(notes.filter((item) => item.id !== id));
+      dispatch(ac.deleteNotesCreator(id));
     } catch (error) {
       handlerError(error as Error);
     }
@@ -44,7 +51,8 @@ export function useNotes(repo: NoteApiRepo) {
   const updateNote = async (note: NoteStructure) => {
     try {
       const finalNote = await repo.update(note);
-      setNotes(notes.map((item) => (item.id === note.id ? finalNote : item)));
+      // Previous NO FLUX setNotes(notes.map((item) => (item.id === note.id ? finalNote : item)));
+      dispatch(ac.updateNotesCreator(finalNote));
     } catch (error) {
       handlerError(error as Error);
     }
